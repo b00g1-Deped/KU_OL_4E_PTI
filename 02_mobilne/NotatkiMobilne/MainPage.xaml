@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NotatkiMobilne.MainPage"
+             Title="Moje notatki"
+             BackgroundColor="#FFF8F8">
+    <Grid Padding="20" RowDefinitions="Auto,Auto,Auto,*" RowSpacing="16">
+        <Label Grid.Row="0"
+               Text="Moje notatki"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="#2B1A1A"
+               HorizontalOptions="Center" />
+
+        <Label Grid.Row="1"
+               Text="Zapisz ważne informacje i zadania na dziś."
+               FontSize="14"
+               TextColor="#6B5555"
+               HorizontalOptions="Center" />
+
+        <HorizontalStackLayout Grid.Row="2" Spacing="10">
+            <Entry x:Name="NowaNotatkaEntry"
+                   Placeholder="Nowy element"
+                   ReturnType="Done"
+                   HorizontalOptions="FillAndExpand"
+                   TextColor="#2B1A1A"
+                   PlaceholderColor="#907777"
+                   BackgroundColor="White" />
+            <Button Text="DODAJ"
+                    Clicked="DodajButton_Clicked"
+                    BackgroundColor="#DC143C"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    CornerRadius="8" />
+        </HorizontalStackLayout>
+
+        <CollectionView Grid.Row="3"
+                        ItemsSource="{Binding Notatki}"
+                        SelectionMode="None">
+            <CollectionView.EmptyView>
+                <Label Text="Brak notatek do wyświetlenia."
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="#DC143C"
+                            StrokeThickness="1"
+                            BackgroundColor="White"
+                            Margin="0,4"
+                            Padding="14"
+                            StrokeShape="RoundRectangle 8">
+                        <Label Text="{Binding .}"
+                               FontSize="17"
+                               TextColor="#2B1A1A" />
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
